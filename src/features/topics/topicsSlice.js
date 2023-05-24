@@ -14,9 +14,21 @@ const topicsSlice = createSlice({
           quizIds: []
         }
       };
+    },
+    addQuizId(state, action) {
+      //   console.log(Object.keys(state.topics));
+      Object.keys(state.topics).map((topicId) => {
+        // console.log(topicId.id);
+        // console.log(action.payload);
+        if (topicId === action.payload.topicId) {
+          state.topics[topicId].quizIds.push(action.payload.quizId);
+          console.log(state.topics[topicId].quizIds);
+        }
+        return topicId;
+      });
     }
   }
 });
 
-export const { addTopic } = topicsSlice.actions;
+export const { addTopic, addQuizId } = topicsSlice.actions;
 export default topicsSlice.reducer;
